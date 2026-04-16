@@ -1,8 +1,11 @@
 #include <stdio.h>
 
+#define MAX_VALUE 10000001
+// 2 <= n <= 10^7 (o + 1 é para o '\0')
+
 int n;
-char grid[2][10000001]; // 2 <= n <= 10^7 (o + 1 é para o '\0')
-int visitado[2][10000001];
+char grid[2][MAX_VALUE];
+int visitado[2][MAX_VALUE];
 
 void dfs(int linha, int coluna) {
   // fora da grid
@@ -11,11 +14,11 @@ void dfs(int linha, int coluna) {
   if (coluna < 0 || coluna >= n)
     return;
 
-  // bloqueado ou já visitado
-  if (grid[linha][coluna] == '1' || visitado[linha][coluna])
+  // bloqueado
+  if (grid[linha][coluna] == '1')
     return;
 
-  visitado[linha][coluna] = 1;
+  visitado[linha][coluna] = 2;
 
   // movimentos possíveis
   dfs(linha, coluna + 1); // direita
@@ -38,20 +41,20 @@ int main() {
 
   return 0;
 }
-/* USAR BFS
- a cada iteracao trocar o 0 por 1 e dai rodar!!!!
- ou seja fazer um caminhozinho
- 0 0 0 0 0
- 1 1 0 1 0
- > > > > V
- x x V x V
-
- start:
- * visitar(nó)
- *   marcar como visitado
+/* start:
  *
- *  para cada vizinho:
- *    se não foi visitado:
+ * visitar(nó)
+ *   marcar como visitado --> 2
+ *   criar mapa(total de 0ros)
+ *
+ *  para cada vizinho != 1:
  *        visitar(vizinho)
- end;
+ *
+ *  bloquear atual
+ *  para cada viz != 1:
+ *    visitar(vizinho)
+ *    se total de livres < (mapa-1)
+ *  -Indica que teve separação?
+ *
+ * end;
  */
