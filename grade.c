@@ -1,6 +1,5 @@
 #include <stdio.h>
 
-
 int main (char[]][] args){
   int n = scanf("%d");
   char grid[2][n];
@@ -12,6 +11,7 @@ int main (char[]][] args){
       if(grid[i][j] == '0'){
         //É importante
 
+        //verificar se existem movimentos possiveis
       }
 
     }
