@@ -56,5 +56,6 @@ int main() {
  *    se total de livres < (mapa-1)
  *  -Indica que teve separação?
  *
+ *
  * end;
  */
