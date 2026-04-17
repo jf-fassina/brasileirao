@@ -7,24 +7,8 @@ int n;
 char grid[2][MAX_VALUE];
 int visitado[2][MAX_VALUE];
 
-void dfs(int linha, int coluna) {
-  // fora da grid
-  if (linha < 0 || linha >= 2)
-    return;
-  if (coluna < 0 || coluna >= n)
-    return;
-
-  // bloqueado
-  if (grid[linha][coluna] == '1')
-    return;
-
-  visitado[linha][coluna] = 2;
-
-  // movimentos possíveis
-  dfs(linha, coluna + 1); // direita
-  dfs(linha, coluna - 1); // esquerda
-  dfs(1 - linha, coluna); // troca de linha
-}
+void dfs(int linha, int coluna);
+char getImportante(char att);
 
 int main() {
   scanf("%d", &n);
@@ -59,19 +43,30 @@ int main() {
  * end;
  */
 
-int teste() {
+void dfs(int linha, int coluna) {
+  // fora da grid
+  if (linha < 0 || linha >= 2)
+    return;
+  if (coluna < 0 || coluna >= n)
+    return;
 
-  scanf("%d", &n);
-
-  scanf("%s", grid[0]);
-  scanf("%s", grid[1]);
-
-  for (int l = 0; l < 2; l++) {
-    for (int c = 0; c < n; c++) {
-
-      if (grid[l][c] != '1') {
-        grid[l][c] = '2';
-      }
-    }
+  // bloqueado
+  if (grid[linha][coluna] == '1') {
+    visitado[linha][coluna] = '1';
+    return;
   }
+
+  visitado[linha][coluna] = getImportante(grid[linha][coluna]);
+}
+
+char getImportante(int linha, int coluna) {
+  // movimentos possíveis
+  dfs(linha, coluna + 1); // direita
+  dfs(linha, coluna - 1); // esquerda
+  dfs(1 - linha, coluna); // troca de linha
+
+  if (visitado[linha][coluna]) {
+  }
+
+  return '2';
 }
