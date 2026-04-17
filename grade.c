@@ -56,6 +56,22 @@ int main() {
  *    se total de livres < (mapa-1)
  *  -Indica que teve separação?
  *
- *
  * end;
  */
+
+int teste() {
+
+  scanf("%d", &n);
+
+  scanf("%s", grid[0]);
+  scanf("%s", grid[1]);
+
+  for (int l = 0; l < 2; l++) {
+    for (int c = 0; c < n; c++) {
+
+      if (grid[l][c] != '1') {
+        grid[l][c] = '2';
+      }
+    }
+  }
+}
